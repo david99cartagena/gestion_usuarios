@@ -11,7 +11,15 @@
 
 				{% if error %}
 					<script>
-						Swal.fire({icon: 'error', title: 'Error', text: '{{ error.messageKey|trans(error.messageData, "security") }}'});
+						document.addEventListener('DOMContentLoaded', function () {
+							Swal.fire({
+							icon: 'error',
+							title: 'Error de inicio de sesión',
+							text: '{{ error.messageKey|trans(error.messageData, "security") }}',
+							confirmButtonColor: '#d33',
+							confirmButtonText: 'Aceptar'
+							});
+						});
 					</script>
 				{% endif %}
 
