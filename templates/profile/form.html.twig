@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ is_edit ? 'Editar Perfil' : 'Registro' }}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" style="max-width: 500px;">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="text-center mb-4">{{ is_edit ? 'Editar Perfil' : 'Crear Cuenta' }}</h3>
+                
+                {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.nombre, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder': 'Tu nombre'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.nombre) }}</div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.email, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'nombre@ejemplo.com'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.email) }}</div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.plainPassword, is_edit ? 'Nueva Contraseña (opcional)' : 'Contraseña', {'label_attr': {'class': 'form-label'}}) }}
+                    <div class="input-group">
+                        {{ form_widget(form.plainPassword, {
+                            'attr': {
+                                'class': 'form-control',
+                                'id': 'password_field',
+                                'placeholder': is_edit ? 'Dejar en blanco para no cambiar' : 'Mínimo 6 caracteres'
+                            }
+                        }) }}
+                        <button class="btn btn-outline-secondary" type="button" id="toggle_password_btn" onclick="togglePassword()">
+                            👁
+                        </button>
+                    </div>
+                    <div class="text-danger small">{{ form_errors(form.plainPassword) }}</div>
+                </div>
+
+                {% if not is_edit %}
+                    <div class="form-check mb-4">
+                        {{ form_widget(form.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                        {{ form_label(form.agreeTerms, 'Acepto los términos', {'label_attr': {'class': 'form-check-label'}}) }}
+                        <div class="text-danger small">{{ form_errors(form.agreeTerms) }}</div>
+                    </div>
+                {% endif %}
+
+                {# BLOQUE DE BOTONES EN PARALELO #}
+                <div class="row g-2 mt-4">
+                    <div class="col-6">
+                        <a href="{{ is_edit ? path('app_profile') : path('app_login') }}" class="btn btn-outline-secondary w-100 py-2">
+                            {{ is_edit ? 'Cancelar' : 'Volver' }}
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success w-100 py-2 fw-bold">
+                            {{ is_edit ? 'Guardar' : 'Registrarse' }}
+                        </button>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+
+                {% if not is_edit %}
+                    <hr class="mt-4">
+                    <div class="text-center">
+                        <a href="{{ path('app_login') }}" class="text-decoration-none small">
+                            ¿Ya tienes cuenta? Inicia sesión
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById("password_field") || 
+                                document.querySelector('input[id*="plainPassword"]');
+            const toggleBtn = document.getElementById("toggle_password_btn");
+            
+            if (!passwordField) return;
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleBtn.textContent = "🙈";
+            } else {
+                passwordField.type = "password";
+                toggleBtn.textContent = "👁";
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,127 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Mi Perfil
+{% endblock %}
+
+{% block body %}
+	<div class="card shadow" style="max-width: 600px; margin:auto;">
+		<div class="card-body">
+			<h3 class="card-title mb-4">Mi Perfil</h3>
+			<p>
+				<strong>Nombre:</strong>
+				{{ app.user.nombre }}</p>
+			<p>
+				<strong>Email:</strong>
+				{{ app.user.email }}</p>
+			<p>
+				<strong>Estado:</strong>
+				{% if app.user.isActive %}
+					<span class="badge bg-success">Activo</span>
+				{% else %}
+					<span class="badge bg-danger">Inactivo</span>
+				{% endif %}
+			</p>
+			<div class="d-flex gap-2 mt-3"> <a href="{{ path('app_deactivate') }}" class="btn btn-warning">Desactivar cuenta</a> </div>
+			<div class="d-flex gap-2 mt-3">
+				<a href="{{ path('app_profile_edit') }}" class="btn btn-primary">
+					Editar Perfil
+				</a>
+				<a href="{{ path('app_deactivate') }}" class="btn btn-warning">
+					Desactivar cuenta
+				</a>
+
+                <a href="{{ path('app_profile_edit') }}" class="btn btn-primary w-100 mt-3">Editar Perfil</a>
+
+                {% if app.user.isActive %}
+                <form action="{{ path('app_profile_deactivate') }}" method="post">
+                <form action="{{ path('app_profile_deactivate') }}" method="post" class="mt-2">
+                    <input type="hidden" name="_token" value="{{ csrf_token('deactivate-profile') }}">
+                    <button type="submit" class="btn btn-danger w-100">Desactivar Cuenta</button>
+                </form>
+                {% endif %}
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
+ #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Mi Perfil{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card shadow" style="max-width: 600px; margin: auto;">
+        <div class="card-body">
+            <h3 class="text-center mb-4">Mi Perfil</h3>
+
+            <div class="row mb-4">
+                <div class="col-sm-4 text-muted">Nombre:</div>
+                <div class="col-sm-8 fw-bold">{{ app.user.nombre }}</div>
+
+                <div class="col-sm-4 text-muted mt-2">Email:</div>
+                <div class="col-sm-8 fw-bold mt-2">{{ app.user.email }}</div>
+
+                <div class="col-sm-4 text-muted mt-2">Estado:</div>
+                <div class="col-sm-8 mt-2">
+                    {% if app.user.isActive %}
+                        <span class="badge bg-success">Activo</span>
+                    {% else %}
+                        <span class="badge bg-danger">Inactivo</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row g-2">
+                <div class="col-6">
+                    <a href="{{ path('app_profile_edit') }}" class="btn btn-primary w-100">
+                        Editar Perfil
+                    </a>
+                </div>
+
+                <div class="col-6">
+                    {% if app.user.isActive %}
+                        <form id="deactivate-form" 
+                              action="{{ path('app_profile_deactivate') }}" 
+                              method="post">
+                              
+                            <input type="hidden" name="_token" 
+                                   value="{{ csrf_token('deactivate-profile') }}">
+                                   
+                            <button type="button" 
+                                    class="btn btn-outline-danger w-100"
+                                    onclick="confirmDeactivate()">
+                                Desactivar
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDeactivate() {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Tu cuenta será desactivada y no podrás iniciar sesión.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Sí, desactivar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('deactivate-form').submit();
+        }
+    });
+}
+</script>
+
+{% endblock %}

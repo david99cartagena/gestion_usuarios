@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Iniciar sesión
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5" style="max-width: 500px;">
+		<div class="card shadow">
+			<div class="card-body">
+				<h3 class="text-center mb-4">Iniciar sesión</h3>
+
+				{% if error %}
+					<script>
+						Swal.fire({icon: 'error', title: 'Error', text: '{{ error.messageKey|trans(error.messageData, "security") }}'});
+					</script>
+				{% endif %}
+
+
+				<form method="post">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<div class="mb-3">
+						<label class="form-label">Email</label>
+						<input type="email" name="email" value="{{ last_username }}" class="form-control" required autofocus>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Contraseña</label>
+						<div class="input-group">
+							<input type="password" name="password" id="login_password" class="form-control" required>
+							<button class="btn btn-outline-secondary" type="button" onclick="toggleLoginPassword()" id="login_toggle_btn">
+								👁
+							</button>
+						</div>
+					</div>
+					<button class="btn btn-primary w-100" type="submit">
+						Ingresar
+					</button>
+				</form>
+
+				<div class="text-center mt-3">
+					<a href="{{ path('app_register') }}">¿No tienes cuenta? Regístrate</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function toggleLoginPassword() {
+            const passwordField = document.getElementById("login_password");
+            const toggleBtn = document.getElementById("login_toggle_btn");
+
+            if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleBtn.textContent = "🙈";
+            } else {
+            passwordField.type = "password";
+            toggleBtn.textContent = "👁";
+            }
+        }
+	</script>
+{% endblock %}

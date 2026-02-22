@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}Inicio
+{% endblock %}
+{% block body %}
+	<div class="text-center mt-5">
+		<h1>Sistema de Gestión de Usuarios</h1>
+		<p class="lead">Bienvenido al sistema.</p>
+		{% if not app.user %}
+			<a href="{{ path('app_login') }}" class="btn btn-primary">Iniciar sesión</a>
+			<a href="{{ path('app_register') }}" class="btn btn-success">Registrarse</a>
+		{% else %}
+			<a href="{{ path('app_profile') }}" class="btn btn-dark">Ir a mi perfil</a>
+		{% endif %}
+	</div>
+{% endblock %}
