@@ -1,0 +1,36 @@
+### > symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+
+/public/bundles/
+/var/
+/vendor/
+
+# IGNORAR TODAS LAS LLAVES PRIVADAS DE SECRETOS (MUY IMPORTANTE)
+/config/secrets/*.decrypt.private.php
+### < symfony/framework-bundle ###
+
+### > symfony/asset-mapper ###
+/assets/vendor/
+### < symfony/asset-mapper ###
+
+### > symfony/phpunit-bridge ###
+/.phpunit.result.cache
+/phpunit.xml
+# /tests/bootstrap.php  <-- Descomenta solo si tiene datos sensibles
+### < symfony/phpunit-bridge ###
+
+### > doctrine/doctrine-bundle ###
+/var/data.db
+/var/*.db
+### < doctrine/doctrine-bundle ###
+
+### > Instalaciones y OS ###
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.log
+
+.env
