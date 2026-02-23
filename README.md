@@ -17,7 +17,17 @@ Aplicación web desarrollada con **Symfony 6** y **Doctrine ORM**, con autentica
 
 ## 📷 Imagenes de la Aplicacion
 
-![](https://raw.githubusercontent.com/david99cartagena/sinergia-gestion-paciente-back/refs/heads/main/media/Screenshot_1.png)
+- ![](https://raw.githubusercontent.com/david99cartagena/gestion_usuarios/refs/heads/main/media/Screenshot_1.png)
+
+- ![](https://raw.githubusercontent.com/david99cartagena/gestion_usuarios/refs/heads/main/media/Screenshot_2.png)
+
+- ![](https://raw.githubusercontent.com/david99cartagena/gestion_usuarios/refs/heads/main/media/Screenshot_3.png)
+
+- ![](https://raw.githubusercontent.com/david99cartagena/gestion_usuarios/refs/heads/main/media/Screenshot_4.png)
+
+- ![](https://raw.githubusercontent.com/david99cartagena/gestion_usuarios/refs/heads/main/media/Screenshot_5.png)
+
+- ![](https://raw.githubusercontent.com/david99cartagena/gestion_usuarios/refs/heads/main/media/Screenshot_6.png)
 
 ## ⚙️ Stack Tecnológico
 
