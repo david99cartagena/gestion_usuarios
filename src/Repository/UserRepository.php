@@ -33,7 +33,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
-    
+
     public function checkPreAuth(User $user)
     {
         if (!$user instanceof User) {

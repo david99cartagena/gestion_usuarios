@@ -204,14 +204,14 @@ Asegúrate de tener instalado lo siguiente en tu entorno Windows:
    ```
 
    _Esto creará:_
-   - Usuario de prueba: david@test.com / 123456
+   - Usuario de prueba: david@test.com / password: 123456
    - Roles de usuario
    - Otros datos opcionales según fixtures
 
 7. **Levantar el servidor local de Symfony:**
 
    ```bash
-   symfony serve
+   symfony server:start
    ```
 
    - La API estará disponible en:  

@@ -12,20 +12,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ProfileController extends AbstractController
 {
-    // #[Route('/profile', name: 'app_profile')]
-    // public function index(): Response
-    // {
-    //     return $this->render('profile/index.html.twig', [
-    //         'controller_name' => 'ProfileController',
-    //     ]);
-    // }
-    // #[Route('/profile', name: 'app_profile')]
-    // public function index(): Response
-    // {
-    //     return $this->render('profile/index.html.twig', [
-    //         'user' => $this->getUser(),
-    //     ]);
-    // }
     #[Route('/profile', name: 'app_profile')]
     public function index(): Response
     {
@@ -73,7 +59,7 @@ final class ProfileController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Perfil actualizado correctamente.');
-            
+
             return $this->redirectToRoute('app_profile');
         }
 
